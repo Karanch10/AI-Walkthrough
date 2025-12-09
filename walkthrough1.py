@@ -345,26 +345,20 @@ Instructions:
 
 def generate_structured_report():
     """Main function: batch photo classify → voice map → structured report."""
-    
     if len(st.session_state.photos) == 0 and len(st.session_state.transcripts) == 0:
         st.error("No data to generate report. Please capture photos or record audio.")
         return
-
     if not GOOGLE_API_KEY:
         st.error("Google API key not configured!")
         return
-
     with st.spinner("🤖 Classifying photos & generating report..."):
         # 1️⃣ Batch photo classification (FAST)
         categorized_photos = classify_photos_with_ai()
-
         # 2️⃣ Voice → category mapping
         full_transcript = "\n".join([t["text"] for t in st.session_state.transcripts])
         voice_by_category = map_voice_to_sections(full_transcript, categorized_photos)
-
         # 3️⃣ CompanyCam-style report
         report_body = generate_companycam_report(categorized_photos, voice_by_category)
-
         # ✅ Header
         header = f"""# 👷Job Site Walkthrough Report
 
@@ -385,9 +379,7 @@ def generate_structured_report():
             "timestamp": datetime.now(),
         }
         st.session_state.report_generated = True
-
         st.success("✅ Report generated successfully!")
-
 
 def download_report_as_html_enhanced():
     """Create enhanced HTML with photos in sections"""
