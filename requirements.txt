@@ -3,3 +3,4 @@ assemblyai>=0.17.0
 google-generativeai>=0.3.0
 opencv-python-headless
 pillow>=10.0.0
+python-dotenv
