@@ -1,8 +1,4 @@
 /.qodo
 .env
-cert.pem
-key.pem
-room_grouping.py
-test.py
-walkthrough2.py
 /photos
+/__pycache__/
